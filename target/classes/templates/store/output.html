@@ -21,13 +21,13 @@
 </head>
 <body>
 
-<div class="alert alert-success" role="alert">
-  <strong>Well done!</strong> You successfully read this important alert message.
-</div>
+<!--<div class="alert alert-success" role="alert">-->
+<!--  <strong>Well done!</strong> You successfully read this important alert message.-->
+<!--</div>-->
 
 
 <div class="panel admin-panel">
-  <div class="panel-head"><strong><span class="icon-plus"></span> 增加药品</strong></div>
+  <div class="panel-head"><strong><span class="icon-plus"></span> 药品入库</strong></div>
   <div class="body-content">
     <form method="post" class="form-x">
 
@@ -37,7 +37,8 @@
           <label for="drug_code">药品编号：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" id="drug_code" name="drug_code" size="50"/>
+          <input type="text" class="input w50" id="drug_code" name="drug_code" size="50"placeholder="请输入药品编码"
+                 data-validate="required:请输入药品编码"/>
         </div>
       </div>
 
@@ -52,14 +53,14 @@
         </div>
       </div>
 
-      <!--      价格-->
+      <!--      入库数量-->
       <div class="form-group">
         <div class="label">
-          <label for="price">药品价格：</label>
+          <label for="output_count">出库数量：</label>
         </div>
         <div class="field">
-          <input type="text" class="input w50" id="price" name="price" size="50" placeholder="请输入药品价格"
-                 data-validate="required:请输入药品价格"/>
+          <input type="text" class="input w50" id="output_count" name="output_count" size="50" placeholder="请输入出库数量"
+                 data-validate="required:请输入出库数量"/>
         </div>
       </div>
 
@@ -80,10 +81,11 @@
     function subClick() {
         var drug_code = $('#drug_code').val();
         var drug_name = $('#drug_name').val();
-        var price = $('#price').val();
-        var obj = {drug_code, drug_name, price}
+        var output_count = parseInt($('#output_count').val());
+        var obj = {drug_code, drug_name, output_count}
+
         $.ajax({
-            url: "/drug/add/deal",
+            url: "/store/output/deal",
             type: "post",
             contentType: "application/json;charset=UTF-8",
             data: JSON.stringify(obj),

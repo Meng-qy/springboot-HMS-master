@@ -2,10 +2,9 @@ package com.meng.mapper;
 
 import com.meng.pojo.Store;
 import com.meng.pojo.StoreDrug;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import com.meng.pojo.StoreInput;
+import com.meng.pojo.StoreOutput;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -23,4 +22,20 @@ public interface StoreMapper {
     @Insert(value ="INSERT INTO store (store_id,drug_code,drug_count,last_time)\n" +
             "VALUES(NULL,#{store.drug_code},#{store.drug_count},#{store.last_time})")
     int addStore(@Param("store") Store store);
+
+    @Update(value = "")
+    int updateStore(@Param("store") Store store);
+
+
+    @Insert(value = "INSERT INTO store_input\n" +
+            "(id,drug_code,input_count,input_time)\n" +
+            "VALUES\n" +
+            "(NULL,#{input.drug_code},#{input.input_count},#{input.input_time})")
+    int storeInput(@Param("input")StoreInput storeInput);
+
+    @Insert(value = "INSERT INTO store_output\n" +
+            "(id,drug_code,output_count,output_time)\n" +
+            "VALUES\n" +
+            "(NULL,#{output.drug_code},#{output.output_count},#{output.output_time})")
+    int storeOutput(@Param("output")StoreOutput storeOutput);
 }

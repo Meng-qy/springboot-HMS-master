@@ -14,7 +14,7 @@
 <body>
 
 <div class="panel admin-panel">
-  <div class="panel-head"><strong class="icon-reorder"> 库存列表</strong> <a th:href="@{/store/list}"
+  <div class="panel-head"><strong class="icon-reorder"> 库存列表</strong> <a th:href="@{/store/store}"
                                                                          style="float:right; display:none;">添加字段</a>
   </div>
 
@@ -42,17 +42,20 @@
         <th>药品名称</th>
         <th>价格</th>
         <th>库存数量</th>
+        <th>最近活跃</th>
         <th>操作</th>
       </tr>
 
-      <tr>
+      <tr th:each="store : ${storeList}">
         <td style="text-align:left; padding-left:20px;width:5%;">
           <input type="checkbox" name="id[]"/>
         </td>
-        <td width="10%" ></td>
-        <td width="10%" ></td>
-        <td width="10%" ></td>
-        <td width="10%" ></td>
+        <td width="10%" th:text="${store.drug_code}"></td>
+        <td width="10%" th:text="${store.drug_name}"></td>
+        <td width="10%" th:text="${store.price}"></td>
+        <td width="10%" th:text="${store.drug_count}"></td>
+        <td width="10%" th:text="${store.last_time}"></td>
+
         <td>
           <div class="button-group">
             <a class="button border-main"><span class="icon-edit"></span> 修改</a>

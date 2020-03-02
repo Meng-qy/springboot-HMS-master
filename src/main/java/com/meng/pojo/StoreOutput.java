@@ -5,12 +5,12 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Setter
+@Getter
 @ToString
-public class Store {
-    private Integer store_id;
+public class StoreOutput {
+    private Integer id;
     private String drug_code;
-    private Integer drug_count;
-    private String last_time;
+    private Integer output_count;
+    private String output_time;
 }
