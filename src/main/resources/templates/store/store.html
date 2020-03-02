@@ -37,6 +37,7 @@
     <table class="table table-hover text-center">
       <tr>
         <th style="text-align:left; padding-left:20px;">选择</th>
+
         <th>药品编码</th>
         <th>药品名称</th>
         <th>价格</th>
@@ -44,19 +45,19 @@
         <th>操作</th>
       </tr>
 
-      <tr th:each="drug : ${drugsList}">
+      <tr>
         <td style="text-align:left; padding-left:20px;width:5%;">
           <input type="checkbox" name="id[]"/>
         </td>
-        <td width="10%" th:text="${drug.drug_code}"></td>
-        <td width="10%" th:text="${drug.drug_name}"></td>
-        <td width="10%" th:text="${drug.price}"></td>
-        <td width="10%" th:text="${drug.add_time}"></td>
+        <td width="10%" ></td>
+        <td width="10%" ></td>
+        <td width="10%" ></td>
+        <td width="10%" ></td>
         <td>
           <div class="button-group">
-            <a class="button border-main" th:href="@{/drug/update(id=${drug.id})}"><span class="icon-edit"></span> 修改</a>
+            <a class="button border-main"><span class="icon-edit"></span> 修改</a>
             <a class="button border-red" href="javascript:void(0)"
-               th:onclick="'javascript:return del(\'/drug/delete/'+${drug.id}+'\')'"><span class="icon-trash-o"></span>
+               ><span class="icon-trash-o"></span>
               删除</a>
           </div>
         </td>

@@ -18,4 +18,9 @@ public class StoreServiceImpl implements StoreService{
     public List<Store> queryStoreList() {
         return storeMapper.queryStoreList();
     }
+
+    @Override
+    public int addStore(Store store) {
+        return storeMapper.addStore(store);
+    }
 }

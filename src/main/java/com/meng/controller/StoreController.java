@@ -16,22 +16,18 @@ public class StoreController {
     private StoreService storeService;
 
     @RequestMapping("/store/list")
-    @ResponseBody
     public String storeList(){
         List<Store> stores = storeService.queryStoreList();
-        System.out.println(stores);
-        return "药品库存";
+        return "store/store";
     }
 
     @RequestMapping("/store/input")
-    @ResponseBody
     public String storeInput(){
-        return "药品入库";
+        return "store/input";
     }
 
     @RequestMapping("/store/output")
-    @ResponseBody
     public String storeOutput(){
-        return "药品出库";
+        return "store/output";
     }
 }

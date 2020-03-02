@@ -81,10 +81,16 @@ public class DrugController {
         drug.setId(null);
         drug.setAdd_time(dt);
         System.out.println(drug);
-        drugService.addDrug(drug);
+        int i = drugService.addDrug(drug);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("msg","添加成功");
+
+        if (i==1){
+            map.put("msg","添加成功");
+        }else {
+            map.put("msg","添加失败");
+        }
+
         return map;
     }
 

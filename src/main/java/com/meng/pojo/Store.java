@@ -11,6 +11,7 @@ import lombok.*;
 public class Store {
 
     private int store_id;
-    private String name;
+    private String drug_code;
     private String drug_count;
+    private String last_time;
 }

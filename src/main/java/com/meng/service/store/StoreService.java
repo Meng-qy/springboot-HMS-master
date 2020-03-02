@@ -5,5 +5,9 @@ import com.meng.pojo.Store;
 import java.util.List;
 
 public interface StoreService {
-    public List<Store> queryStoreList();
+
+    List<Store> queryStoreList();
+
+    int addStore(Store store);
+
 }
