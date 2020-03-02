@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="renderer" content="webkit">
+  <title></title>
+  <link rel="stylesheet" th:href="@{/css/pintuer.css}">
+  <link rel="stylesheet" th:href="@{/css/admin.css}">
+  <script th:src="@{/js/jquery.js}"></script>
+  <script th:src="@{/js/pintuer.js}"></script>
+</head>
+<body>
+
+<div class="panel admin-panel">
+  <div class="panel-head"><strong class="icon-reorder"> 药品列表</strong> <a th:href="@{/drug/list}"
+                                                                         style="float:right; display:none;">添加字段</a>
+  </div>
+
+  <div class="padding border-bottom">
+    <ul class="search" style="padding-left:10px;">
+
+
+      <li><a class="button border-main icon-plus-square-o" th:href="@{/drug/add}"> 添加药品</a></li>
+
+      <li>搜索：</li>
+      <li>
+        <form method="post" th:action="@{/drug/searchList}" id="searchform">
+
+          <input type="text" placeholder="请输入搜索关键字" id="keywords" name="keywords" class="input"
+                 style="width:250px; line-height:17px;display:inline-block"/>
+          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()"> 搜索</a>
+        </form>
+      </li>
+    </ul>
+  </div>
+
+  <form method="post" action="" id="listform">
+    <table class="table table-hover text-center">
+      <tr>
+        <th style="text-align:left; padding-left:20px;">选择</th>
+        <th>药品编码</th>
+        <th>药品名称</th>
+        <th>价格</th>
+        <th>添加时间</th>
+        <th>操作</th>
+      </tr>
+
+      <tr th:each="drug : ${drugsList}">
+        <td style="text-align:left; padding-left:20px;width:5%;">
+          <input type="checkbox" name="id[]"/>
+        </td>
+        <td width="10%" th:text="${drug.drug_code}"></td>
+        <td width="10%" th:text="${drug.drug_name}"></td>
+        <td width="10%" th:text="${drug.price}"></td>
+        <td width="10%" th:text="${drug.add_time}"></td>
+        <td>
+          <div class="button-group">
+            <a class="button border-main" th:href="@{/drug/update(id=${drug.id})}"><span class="icon-edit"></span> 修改</a>
+            <a class="button border-red" href="javascript:void(0)"
+               th:onclick="'javascript:return del(\'/drug/delete/'+${drug.id}+'\')'"><span class="icon-trash-o"></span>
+              删除</a>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="1" style="text-align:left; padding:19px 0;padding-left:20px;">
+          <input type="checkbox" id="checkall"/>
+          全选
+        </td>
+        <td colspan="1">
+          <a href="javascript:void(0)"
+             class="button border-red icon-trash-o"
+             style="padding:5px 15px;" onclick="DelSelect()"
+          >
+            删除选中
+          </a>
+        </td>
+        <td colspan="5">
+
+        </td>
+      </tr>
+      <tr>
+        <td colspan="8">
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li>
+                <a href="#" aria-label="Previous">
+                  <span aria-hidden="true">«</span>
+                </a>
+              </li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li>
+                <a href="#" aria-label="Next">
+                  <span aria-hidden="true">»</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </td>
+      </tr>
+
+    </table>
+  </form>
+</div>
+
+<script type="text/javascript">
+
+    //搜索
+    function changesearch() {
+        $('#searchform').submit();
+    }
+
+    //单个删除
+    function del(url) {
+        if (confirm("您确定要删除吗?")) {
+
+            location.href = url;
+        }
+    }
+
+    //全选
+    $("#checkall").click(function () {
+        var all_this = $(this).prop('checked');
+        $("input[name='id[]']").prop('checked', all_this);
+    });
+
+    setInterval(function () {
+        var inp_id = $("input[name='id[]']");
+        inp_id.each(function (i) {
+            if (!inp_id.eq(i).prop('checked')) {
+                $("#checkall").prop('checked', false);
+                return false;
+            } else {
+                $("#checkall").prop('checked', true);
+            }
+        });
+    }, 200);
+
+    //批量删除
+    function DelSelect() {
+        var Checkbox = false;
+        $("input[name='id[]']").each(function () {
+            if (this.checked == true) {
+                Checkbox = true;
+            }
+        });
+        if (Checkbox) {
+            var t = confirm("您确认要删除选中的内容吗？");
+            if (t == false) return false;
+            $("#listform").submit();
+        } else {
+            alert("请选择您要删除的内容!");
+            return false;
+        }
+    }
+
+
+</script>
+</body>
+</html>

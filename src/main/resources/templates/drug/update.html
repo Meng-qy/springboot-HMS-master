@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="renderer" content="webkit">
+  <meta   charset="utf-8">
+  <title>登录</title>
+  <link rel="stylesheet" th:href="@{/css/pintuer.css}">
+  <link rel="stylesheet" th:href="@{/css/admin.css}">
+  <script th:src="@{/js/jquery.js}"></script>
+  <script th:src="@{/js/pintuer.js}"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-key"></span> 修改药品信息</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" th:action="@{/drug/update/deal}">
+
+      <!--      ID-->
+      <div class="form-group">
+        <div class="label">
+          <label for="id">ID：</label>
+        </div>
+        <div class="field">
+          <input type="text" th:value="${queryDrugById.id}" class="input w50" id="id" name="id" size="50" readonly />
+        </div>
+      </div>
+      <!--      药品编码-->
+      <div class="form-group">
+        <div class="label">
+          <label for="drug_code">药品编码：</label>
+        </div>
+        <div class="field">
+          <input type="text" th:value="${queryDrugById.drug_code}" class="input w50" id="drug_code" name="drug_code" size="50" readonly />
+        </div>
+      </div>
+
+      <!--      药品名称-->
+      <div class="form-group">
+        <div class="label">
+          <label for="drug_name">药品名称：</label>
+        </div>
+        <div class="field">
+          <input type="text"
+                 class="input w50"
+                 id="drug_name"
+                 name="drug_name"
+                 size="50"
+                 placeholder="请输入药品名称"
+                 data-validate="required:请输入药品名称"
+                 th:value="${queryDrugById.drug_name}"
+          />
+        </div>
+      </div>
+
+      <!--      药品价格-->
+      <div class="form-group">
+        <div class="label">
+          <label for="price">药品价格：</label>
+        </div>
+        <div class="field">
+          <input type="text"
+                 class="input w50"
+                 id="price"
+                 name="price"
+                 size="50"
+                 placeholder="请输入药品价格"
+                 data-validate="required:请输入药品价格"
+                 th:value="${queryDrugById.price}"
+          />
+        </div>
+      </div>
+
+
+
+<!--   按钮-->
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 确认修改</button>
+          <button class="button bg-yellow icon-trash-o" onclick="javascript:this.form.action='/drug/list'"> 返回上一级</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+
+</html>
