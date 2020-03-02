@@ -2,6 +2,7 @@ package com.meng.service.store;
 
 import com.meng.mapper.StoreMapper;
 import com.meng.pojo.Store;
+import com.meng.pojo.StoreDrug;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class StoreServiceImpl implements StoreService{
 
 
     @Override
-    public List<Store> queryStoreList() {
+    public List<StoreDrug> queryStoreList() {
         return storeMapper.queryStoreList();
     }
 

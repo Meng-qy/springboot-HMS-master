@@ -1,6 +1,7 @@
 package com.meng.controller;
 
 import com.meng.pojo.Store;
+import com.meng.pojo.StoreDrug;
 import com.meng.service.store.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,10 @@ public class StoreController {
     private StoreService storeService;
 
     @RequestMapping("/store/list")
-    public String storeList(){
-        List<Store> stores = storeService.queryStoreList();
-        return "store/store";
+    @ResponseBody
+    public List<StoreDrug> storeList(){
+        List<StoreDrug> storeList = storeService.queryStoreList();
+        return storeList;
     }
 
     @RequestMapping("/store/input")

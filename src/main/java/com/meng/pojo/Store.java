@@ -10,8 +10,8 @@ import lombok.*;
 @ToString
 public class Store {
 
-    private int store_id;
+    private Integer store_id;
     private String drug_code;
-    private String drug_count;
+    private Integer drug_count;
     private String last_time;
 }
