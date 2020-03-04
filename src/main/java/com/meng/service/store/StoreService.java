@@ -17,4 +17,6 @@ public interface StoreService {
 
     int storeOutput(StoreOutput storeOutput);
 
+    Store queryStoreByDrugCode(String drug_code);
+
 }

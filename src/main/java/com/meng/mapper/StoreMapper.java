@@ -23,8 +23,8 @@ public interface StoreMapper {
             "VALUES(NULL,#{store.drug_code},#{store.drug_count},#{store.last_time})")
     int addStore(@Param("store") Store store);
 
-    @Update(value = "")
-    int updateStore(@Param("store") Store store);
+    @Update(value = "update store set drug_count = #{drug_count},last_time =#{last_time} where drug_code =#{drug_code}")
+    int updateStore(Integer drug_count,String drug_code,String last_time);
 
 
     @Insert(value = "INSERT INTO store_input\n" +
@@ -38,4 +38,7 @@ public interface StoreMapper {
             "VALUES\n" +
             "(NULL,#{output.drug_code},#{output.output_count},#{output.output_time})")
     int storeOutput(@Param("output")StoreOutput storeOutput);
+
+    @Select(value = "select * from store where drug_code =#{drug_code}")
+    Store queryStoreByDrugCode(String drug_code);
 }
